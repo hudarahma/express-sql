@@ -1,7 +1,7 @@
 
-const { User } = require("../models/Models");
+const { User } = require("../models.old/Models");
 
-const router = require("express").Router();
+const router = require("express").Router();  // --> creating the router
 
 router.post("/", async (req, res) => {
   try {
@@ -14,6 +14,9 @@ router.post("/", async (req, res) => {
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
+  const results = await User.findAll({where: {id: 1}});
+  res.status(200).json({ results });
+
 });
 
 module.exports = router;
